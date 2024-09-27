@@ -3,18 +3,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escalonamento Por Prioridade</title>
+    <style>
+        #linhaDoTempo {
+            display: flex;
+            flex-wrap: nowrap; /* Impede a quebra de linha */
+        }
+    </style>
 </head>
-<body>
 
-   
+<body>
+    <input type="number" id="numeroNiveis" placeholder="Numero de níveis [1-10]" class="entry">
+    <button onclick="criarNiveis()"> Criar níveis </button>
 
     <input type="number" id="tamanhoprocesso" placeholder="Tamanho do Processo" class="entry">
     <input type="number" id="prioridadeprocesso" placeholder="Prioridade do Processo" class="entry">
-
     <button onclick="criarProcesso()"> Criar Processo </button>
+
+    <input type="number" id="tamanhoQuantum" placeholder="Unidade de tempo do quantum" class="entry">
+    <input type="checkbox" id="meuCheckbox"> Gerar Processos aleatórios
+
     <button onclick="inicia()"> Iniciar </button>
 
     <div id="niveis"></div>
+    <p> Atual: </p>
+    <div id="processoExecutando"></div>
+
+    <div id="linhaDoTempo"></div>
 
     <script src="scripts/Processo.js"></script>
     <script src="scripts/FilaPronto.js"></script>
