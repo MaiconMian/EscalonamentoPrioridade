@@ -6,12 +6,14 @@
     <style>
         #linhaDoTempo {
             display: flex;
-            flex-wrap: nowrap; /* Impede a quebra de linha */
+            flex-wrap: nowrap; 
         }
     </style>
 </head>
+<body> 
 
-<body>
+    <h1> Escalonamento Por Prioridade </h1>
+
     <input type="number" id="numeroNiveis" placeholder="Numero de níveis [1-10]" class="entry">
     <button onclick="criarNiveis()"> Criar níveis </button>
 
@@ -21,9 +23,13 @@
 
     <input type="number" id="tamanhoQuantum" placeholder="Unidade de tempo do quantum" class="entry">
     <input type="checkbox" id="meuCheckbox"> Gerar Processos aleatórios
+    <input type="number" id="Probabilidade" placeholder="Prob Proc Aleatorio [1-100]" class="entry">
+    <input type="number" id="MaxTamanho" placeholder="Maximo Tamanho Aleatorio" class="entry">
+    <input type="number" id="SubirPrioridade" placeholder="Tempo subir Prioridade" class="entry">
 
-    <button onclick="inicia()"> Iniciar </button>
+    <button onclick="inicia()" id="botaoInicia"> Iniciar </button>
 
+    <p> Niveis: </p>
     <div id="niveis"></div>
     <p> Atual: </p>
     <div id="processoExecutando"></div>
@@ -34,6 +40,7 @@
     <script src="scripts/FilaPronto.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/visualizacao.js"></script>
+    <script src="scripts/gerenciadorProcessos.js"></script>
     <script src="scripts/NivelPrioridade.js"></script>
     
 </body>

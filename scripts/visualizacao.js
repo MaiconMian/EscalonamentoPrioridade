@@ -24,6 +24,9 @@ function atualizarVisualizacao() {
         escalonador.appendChild(nivelDiv);
     }
 
+    atualizaProcessoAtual();
+    atualizaLinhadoTempo();
+
 }
 
 function atualizaProcessoAtual(){
@@ -35,9 +38,7 @@ function atualizaProcessoAtual(){
 
         var processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
-        console.log("func: id: ", processamentoatual.getID(), " de nivel: ", processamentoatual.getPrioridadeAtual(), " executado.");
-        processamentoatualDiv.textContent = `ID: ${processamentoatual.getID()} (Tamanho: ${processamentoatual.getTamanho()})`;
-
+        processamentoatualDiv.textContent = `${processamentoatual.getID()}`;
         atual.appendChild(processamentoatualDiv);
 
     }
