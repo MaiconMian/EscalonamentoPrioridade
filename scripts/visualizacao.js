@@ -1,3 +1,5 @@
+const cores = ['#90ee90', '#32cd32','#00bfff','#1e90ff', '#9370db', '#800080'];
+
 function atualizarVisualizacao() {
     
     var escalonador = document.getElementById('niveis');
@@ -9,7 +11,7 @@ function atualizarVisualizacao() {
         var nivelDiv = document.createElement('div');
 
         nivelDiv.className = 'nivel';
-        nivelDiv.innerHTML = `<strong>Nível ${i+1}:</strong><br>`;
+        nivelDiv.innerHTML = `<strong>Nível ${i+1}</strong><br>`;
 
         for(let j = 0; j < nivel.getTamanhoFila(); j++){
 
@@ -17,7 +19,8 @@ function atualizarVisualizacao() {
 
             var processoDiv = document.createElement('div');
             processoDiv.className = 'processo';
-            processoDiv.textContent = `ID: ${processo.getID()} (Tamanho: ${processo.getTamanho()})`;
+            processoDiv.textContent = `P${processo.getID()} ${processo.getTamanho()}u.t`;
+            processoDiv.style.backgroundColor = cores[processo.getID() % 6];
             nivelDiv.appendChild(processoDiv);
         }
 
@@ -36,9 +39,10 @@ function atualizaProcessoAtual(){
 
     if(processamentoatual != null){
 
-        var processamentoatualDiv = document.createElement('div');
+        let processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
         processamentoatualDiv.textContent = `${processamentoatual.getID()}`;
+        processamentoatualDiv.style.backgroundColor = cores[processamentoatual.getID() % 6];
         atual.appendChild(processamentoatualDiv);
 
     }
@@ -50,10 +54,10 @@ function atualizaLinhadoTempo(){
 
     if(processamentoatual != null){
 
-        var processamentoatualDiv = document.createElement('div');
+        let processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
-        processamentoatualDiv.textContent = `ID: ${processamentoatual.getID()}`;
-
+        processamentoatualDiv.textContent = `P${processamentoatual.getID()}`;
+        processamentoatualDiv.style.backgroundColor = cores[processamentoatual.getID() % 6];
         linhaDoTempo.appendChild(processamentoatualDiv);
     }
 }

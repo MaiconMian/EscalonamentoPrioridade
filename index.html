@@ -3,39 +3,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escalonamento Por Prioridade</title>
-    <style>
-        #linhaDoTempo {
-            display: flex;
-            flex-wrap: nowrap; 
-        }
-    </style>
+    <link rel = "stylesheet" type="text/css" href="Style/style.css">
 </head>
 <body> 
 
-    <h1> Escalonamento Por Prioridade </h1>
+    <h2> Escalonamento Por Prioridade </h2>
 
-    <input type="number" id="numeroNiveis" placeholder="Numero de níveis [1-10]" class="entry">
-    <button onclick="criarNiveis()"> Criar níveis </button>
+    <div class = "EntradasDoUsuario">
+        <div class="criacaoNiveis">
+            <h5 class="tituloNivel">Niveis Prioridade</h5>
+            <p class="informacao"> Numero de níveis (entre 1 e 10): </p>
+            <input type="number" id="numeroNiveis" placeholder="Numero de níveis [1-10]" class="entry">
+            <button onclick="criarNiveis()" class="botaoSimples"> CRIAR </button>
+        </div>
+        <div class="criacaoProcesso">
+            <h5 class="tituloCriacaoProcesso">Criação Processo</h5>
+            <p class="informacao"> Tamanho do processo: </p>
+            <input type="number" id="tamanhoprocesso" placeholder="Tamanho do Processo" class="entry">
+            <p class="informacao"> Prioridade do processo: </p>
+            <input type="number" id="prioridadeprocesso" placeholder="Prioridade do Processo" class="entry">
+            <button onclick="criarProcesso()" class="botaoSimples"> CRIAR </button>
+        </div>
+        <div class="processoAleatorio">
+            <h5 class="tituloProcessoAleatorio">Criar Processo Aleatorio</h5>
+            <input type="checkbox" id="meuCheckbox"> 
+            <p class="informacao"> Probabilidade do processo ser gerado: </p>
+            <input type="number" id="Probabilidade" placeholder="Prob Proc Aleatorio [1-100]" class="entry">
+            <p class="informacao"> Tamanho máximo que um processo pode ter: </p>
+            <input type="number" id="MaxTamanho" placeholder="Maximo Tamanho Aleatorio" class="entry">
+        </div>
+        <div class="iniciaProcessamento">
+            <h5 class="tituloIniciar">Iniciar</h5>
+            <p class="informacao"> Valor do quantum (em u.t): </p>
+            <input type="number" id="tamanhoQuantum" placeholder="Unidade de tempo do quantum" class="entry">
+            <p class="informacao"> Tempo sem executar para subir de prioridade (em u.t): </p>
+            <input type="number" id="SubirPrioridade" placeholder="Tempo subir Prioridade" class="entry">
+            <button onclick="inicia()" id="botaoInicia" class="botaoInicia"> INICIA </button>
+        </div>
+    
+    </div>
 
-    <input type="number" id="tamanhoprocesso" placeholder="Tamanho do Processo" class="entry">
-    <input type="number" id="prioridadeprocesso" placeholder="Prioridade do Processo" class="entry">
-    <button onclick="criarProcesso()"> Criar Processo </button>
+    <h2> PROCESSAMENTO </h2>
 
-    <input type="number" id="tamanhoQuantum" placeholder="Unidade de tempo do quantum" class="entry">
-    <input type="checkbox" id="meuCheckbox"> Gerar Processos aleatórios
-    <input type="number" id="Probabilidade" placeholder="Prob Proc Aleatorio [1-100]" class="entry">
-    <input type="number" id="MaxTamanho" placeholder="Maximo Tamanho Aleatorio" class="entry">
-    <input type="number" id="SubirPrioridade" placeholder="Tempo subir Prioridade" class="entry">
+    <div class="Saida">
 
-    <button onclick="inicia()" id="botaoInicia"> Iniciar </button>
-
-    <p> Niveis: </p>
-    <div id="niveis"></div>
-    <p> Atual: </p>
-    <div id="processoExecutando"></div>
-
-    <div id="linhaDoTempo"></div>
-
+        <div>
+            <p> Niveis de Prioridade </p>
+            <div id="niveis" class="niveis"></div>
+        </div>
+        <div>
+            <p> Processo em Execução </p>
+            <div id="processoExecutando"></div>
+        </div>
+        
+        <div>
+            <p> Linha do tempo</p>
+            <div id="linhaDoTempo"></div>
+        </div>
+        
+    </div>
+    
     <script src="scripts/Processo.js"></script>
     <script src="scripts/FilaPronto.js"></script>
     <script src="scripts/main.js"></script>
