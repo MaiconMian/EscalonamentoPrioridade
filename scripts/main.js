@@ -1,17 +1,18 @@
-
 var numeroProcessos = 0; // contador para o número de processos
 var filaPronto = null; // fila de pronto 
 var processamentoatual = null; // qual o processo atual
 var numeroNiveis = 0 // numero de niveis
+var ut = 0; // armazena a unidade de tempo atual
 
 /**
     * Função que inicia todo o processamento
     */
-function inicia() {
+function iniciar() {
+
+    limpar();
 
     var quantum = 0, // armazena o valor do quantum atual
-        executando = false, // verifica se tem algum processo sendo executado
-        ut = 0; // armazena a unidade de tempo atual
+        executando = false; // verifica se tem algum processo sendo executado
     var quantumMaximo = parseInt(document.getElementById('tamanhoQuantum').value, 10), // valor maximo de um quantum
         probabilidade = parseInt(document.getElementById('Probabilidade').value, 10), // probabilidade de gerar um processo aleatorio
         MaxTamanho = parseInt(document.getElementById('MaxTamanho').value, 10), // tamanho maximo que um processo aleatorio pode ter
@@ -82,13 +83,13 @@ function inicia() {
                 processamentoatual.voltaPrioridade(); 
                 processamentoatual.zeraTempoSemExecutar();
                 executando = true;
-            } else if(!isChecked){
-                // caso não existam mais processos, libera o botão e volta
+            } else if (!isChecked){
                 processamentoatual = null;
                 botaoInicia.disabled = false;
                 atualizarVisualizacao();
-                return; 
+                return;
             }
+
         }
 
         // cria um proesso aleatorio
@@ -103,3 +104,4 @@ function inicia() {
     
 
 }
+

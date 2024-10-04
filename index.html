@@ -7,56 +7,60 @@
 </head>
 <body> 
 
-    <h2> Escalonamento Por Prioridade </h2>
+    <p class="titulo"> Escalonamento Por Prioridade </p>
+    <p class="texto" > Por: Maicon Almeida Mian (RA:2023.1.08.013) | Sistemas Operacionais [DCE131] | Professor: Felipe Rey</p>
 
     <div class = "EntradasDoUsuario">
         <div class="criacaoNiveis">
             <h5 class="tituloNivel">Niveis Prioridade</h5>
             <p class="informacao"> Numero de níveis (entre 1 e 10): </p>
-            <input type="number" id="numeroNiveis" placeholder="Numero de níveis [1-10]" class="entry">
+            <input type="number" id="numeroNiveis"  class="entry">
             <button onclick="criarNiveis()" class="botaoSimples"> CRIAR </button>
         </div>
         <div class="criacaoProcesso">
             <h5 class="tituloCriacaoProcesso">Criação Processo</h5>
             <p class="informacao"> Tamanho do processo: </p>
-            <input type="number" id="tamanhoprocesso" placeholder="Tamanho do Processo" class="entry">
+            <input type="number" id="tamanhoprocesso" class="entry">
             <p class="informacao"> Prioridade do processo: </p>
-            <input type="number" id="prioridadeprocesso" placeholder="Prioridade do Processo" class="entry">
+            <input type="number" id="prioridadeprocesso" class="entry">
             <button onclick="criarProcesso()" class="botaoSimples"> CRIAR </button>
         </div>
         <div class="processoAleatorio">
             <h5 class="tituloProcessoAleatorio">Criar Processo Aleatorio</h5>
-            <input type="checkbox" id="meuCheckbox"> 
+            <input type="checkbox" id="meuCheckbox" class="Checkbox"> 
             <p class="informacao"> Probabilidade do processo ser gerado: </p>
-            <input type="number" id="Probabilidade" placeholder="Prob Proc Aleatorio [1-100]" class="entry">
+            <input type="number" id="Probabilidade"  class="entry">
             <p class="informacao"> Tamanho máximo que um processo pode ter: </p>
-            <input type="number" id="MaxTamanho" placeholder="Maximo Tamanho Aleatorio" class="entry">
+            <input type="number" id="MaxTamanho"  class="entry">
         </div>
         <div class="iniciaProcessamento">
             <h5 class="tituloIniciar">Iniciar</h5>
             <p class="informacao"> Valor do quantum (em u.t): </p>
-            <input type="number" id="tamanhoQuantum" placeholder="Unidade de tempo do quantum" class="entry">
+            <input type="number" id="tamanhoQuantum"  class="entry">
             <p class="informacao"> Tempo sem executar para subir de prioridade (em u.t): </p>
-            <input type="number" id="SubirPrioridade" placeholder="Tempo subir Prioridade" class="entry">
-            <button onclick="inicia()" id="botaoInicia" class="botaoInicia"> INICIA </button>
+            <input type="number" id="SubirPrioridade"  class="entry">
+            <div>
+                <button onclick="iniciar()" id="botaoInicia" class="botaoInicia"> INICIAR </button>
+                <button onclick="parar()" id="botaoPara" class="botaoInicia"> PARAR </button>
+            </div>
         </div>
     
     </div>
 
-    <h2> PROCESSAMENTO </h2>
+    <p class="titulo" > Acompanhamento do Processamento </p>
 
     <div class="Saida">
 
-        <div>
+        <div class="NiveisPrioridade">
             <p> Niveis de Prioridade </p>
             <div id="niveis" class="niveis"></div>
         </div>
-        <div>
-            <p> Processo em Execução </p>
+        <div class="processoEmExecução">
+            <p> Executado </p>
             <div id="processoExecutando"></div>
         </div>
         
-        <div>
+        <div class="linhaDoTempo">
             <p> Linha do tempo</p>
             <div id="linhaDoTempo"></div>
         </div>

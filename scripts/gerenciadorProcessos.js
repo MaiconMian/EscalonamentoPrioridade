@@ -78,6 +78,7 @@ function criaProcessoAleatorio(isChecked, probabilidade, maxTamanho){
         if(probabilidadeGerada < probabilidade){
             // cria o processo
             numeroProcessos++;
+            console.log("processo de numero: ", numeroProcessos);
             let prioridade = Math.floor(Math.random() * numeroNiveis); 
             let tamanho = Math.floor(Math.random() * maxTamanho) + 1; 
             var novoprocesso = new Processo(prioridade, tamanho, numeroProcessos);

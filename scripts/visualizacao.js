@@ -1,4 +1,4 @@
-const cores = ['#90ee90', '#32cd32','#00bfff','#1e90ff', '#9370db', '#800080'];
+const cores = ['#add8e6', '#87cefa', '#4682b4', '#4169e1', '#0000ff', '#00008b'];
 
 function atualizarVisualizacao() {
     
@@ -11,7 +11,7 @@ function atualizarVisualizacao() {
         var nivelDiv = document.createElement('div');
 
         nivelDiv.className = 'nivel';
-        nivelDiv.innerHTML = `<strong>Nível ${i+1}</strong><br>`;
+        nivelDiv.innerHTML = `<p>nivel ${i+1}</p><br>`;
 
         for(let j = 0; j < nivel.getTamanhoFila(); j++){
 
@@ -54,10 +54,26 @@ function atualizaLinhadoTempo(){
 
     if(processamentoatual != null){
 
+        let bloco = document.createElement('div');
+        bloco.className = 'utProcesso';
+
+        let unidadeDeTempo = document.createElement('div');
+        unidadeDeTempo.className = 'ut';
+        unidadeDeTempo.textContent = `${ut}u.t: `;
+        bloco.appendChild(unidadeDeTempo);
+
         let processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
         processamentoatualDiv.textContent = `P${processamentoatual.getID()}`;
         processamentoatualDiv.style.backgroundColor = cores[processamentoatual.getID() % 6];
-        linhaDoTempo.appendChild(processamentoatualDiv);
+        bloco.appendChild(processamentoatualDiv);
+
+        linhaDoTempo.appendChild(bloco);
     }
+}
+
+function limpar(){
+    ut = 0;
+    var linhaDoTempo = document.getElementById('linhaDoTempo');
+    linhaDoTempo.innerHTML = ''; 
 }

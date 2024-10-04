@@ -1,6 +1,6 @@
 
 body{
-    background-color: #000000;
+    background-color: #ffffff;
     align-items: center;
     flex-direction: column;
     display: flex;
@@ -10,21 +10,22 @@ body{
 .EntradasDoUsuario {
     display: flex;
     justify-content: space-around; 
-    background-color: #1a1a1adc; 
+    background-color: #e2e2e2dc; 
     padding: 20px;
     border-radius: 10px;
     gap: 20px;
 }
 
 .tituloNivel, .tituloCriacaoProcesso, .tituloProcessoAleatorio, .tituloIniciar{
-    color:white; 
+    color:rgb(0, 0, 0); 
+    margin:5px;
 }
 
 .criacaoNiveis, .criacaoProcesso, .processoAleatorio, .iniciaProcessamento{
+    background-color: #ffffffdc;
     display: flex;
     flex-direction: column; 
     align-items: center;
-    background-color: #444444c9;
     gap: 0px;
     padding: 10px;
     border-radius: 10px;
@@ -35,13 +36,14 @@ body{
 }
 
 .botaoSimples{
-    background-color: #9516c0;
-    color:white;
+    background-color: #1d86ffdc;
+    color:rgb(255, 255, 255);
     border-radius: 10px; 
     border: none; 
     outline: none;
     padding: 10px 20px; 
     cursor: pointer;
+    margin: 5px;
 }
 
 .botaoInicia{
@@ -52,37 +54,51 @@ body{
     outline: none;
     padding: 10px 20px; 
     cursor: pointer;
+    margin: 5px;
 }
 
 .niveis{
     display: flex; 
     flex-direction: row; 
     justify-content: flex-start; 
-    color: white;
+    color: rgb(0, 0, 0);
     gap: 10px;
 }
 
 .nivel{
     justify-content: flex-start; 
-    color: white;
+    color: rgb(0, 0, 0);
     gap: 10px;
 }
 
 .Saida{
     display: flex;
     justify-content: space-around; 
-    background-color: #1a1a1adc; 
+    background-color: #e2e2e2dc; 
     padding: 20px;
     border-radius: 10px;
     gap: 20px;
 }
 
+.titulo{
+    color: black;
+    font-size: 20px;
+    margin: 20px;
+} 
+
+.texto{
+    margin: 20px;
+    color: black;
+    font-size: 10px;
+}
+
 h1, p, h2, h3{
-    color: white;
+    margin: 5px;
+    color: rgb(0, 0, 0);
 }
 
 .processo {
-    color: black;
+    color: rgb(0, 0, 0);
     border-radius: 10px; 
     border: none;
     padding: 10px;
@@ -95,4 +111,26 @@ input{
     border-radius: 4px; 
     font-size: 12px; 
     margin: 5px;
+    background-color:  #e2e2e2dc;
+}
+
+.Checkbox{
+    width: 30px; 
+    height: 30px; 
+    background-color: white; 
+    cursor: pointer; 
+    outline: none; 
+}
+
+.linhaDoTempo, .processoExecutando, .NiveisPrioridade{
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+.utProcesso {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    align-items: center; 
 }
