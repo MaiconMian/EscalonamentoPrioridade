@@ -3,6 +3,10 @@
 */
 function criarNiveis(){
 
+    if(filaPronto != null){
+        terminei = true;
+    }
+    
     // pega o número de níveis selecionado pelo usuário
     numeroNiveis = parseInt(document.getElementById('numeroNiveis').value, 10);
 

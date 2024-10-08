@@ -1,79 +1,188 @@
+// cores para os processos
 const cores = ['#add8e6', '#87cefa', '#4682b4', '#4169e1', '#0000ff', '#00008b'];
 
+/**
+* Função que é chamada para atualizar a vizualização geral
+* dos níveis, do processo executando e da linha do tempo
+*/
 function atualizarVisualizacao() {
     
+    // pega a div que guarda os níveis e limpa ela
     var escalonador = document.getElementById('niveis');
     escalonador.innerHTML = '';
 
-    for (var i = 0; i < filaPronto.getNumeroNiveis(); i++) {
+    // se existirem processos
+    if(filaPronto != null){
+        // percorre toda a fila de pronto
+        for (var i = 0; i < filaPronto.getNumeroNiveis(); i++) {
 
-        var nivel = filaPronto.getNivel(i);
-        var nivelDiv = document.createElement('div');
-
-        nivelDiv.className = 'nivel';
-        nivelDiv.innerHTML = `<p>nivel ${i+1}</p><br>`;
-
-        for(let j = 0; j < nivel.getTamanhoFila(); j++){
-
-            processo = nivel.getProcesso(j);
-
-            var processoDiv = document.createElement('div');
-            processoDiv.className = 'processo';
-            processoDiv.textContent = `P${processo.getID()} ${processo.getTamanho()}u.t`;
-            processoDiv.style.backgroundColor = cores[processo.getID() % 6];
-            nivelDiv.appendChild(processoDiv);
+            // cria o nivel e a div dele
+            var nivel = filaPronto.getNivel(i);
+            var nivelDiv = document.createElement('div');
+            
+            // cria a div no html do título do nivel
+            nivelDiv.className = 'nivel';
+            nivelDiv.innerHTML = `<p>nivel ${i+1}</p><br>`;
+    
+            // cria todos os processos que pertecem aquele nível
+            for(let j = 0; j < nivel.getTamanhoFila(); j++){
+    
+                // pega o processo
+                processo = nivel.getProcesso(j);
+                // cria a div com as informações
+                var processoDiv = document.createElement('div');
+                processoDiv.className = 'processo';
+                processoDiv.textContent = `P${processo.getID()} ${processo.getTamanho()}u.t`;
+                // seta a cor do processo
+                processoDiv.style.backgroundColor = cores[processo.getID() % 6];
+                nivelDiv.appendChild(processoDiv);
+            }
+    
+            escalonador.appendChild(nivelDiv);
         }
-
-        escalonador.appendChild(nivelDiv);
     }
-
+    
+    // atualiza demais vizualizações
     atualizaProcessoAtual();
     atualizaLinhadoTempo();
 
 }
 
+/**
+* Função que é chamada para atualizar o processo processado na ultima ut
+*/
 function atualizaProcessoAtual(){
 
+    // limpa o anterior
     var atual = document.getElementById('processoExecutando');
     atual.innerHTML = '';
-
+    
+    // se ainda existe um processo
     if(processamentoatual != null){
-
+        // cria a div e preenche ela
         let processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
         processamentoatualDiv.textContent = `${processamentoatual.getID()}`;
         processamentoatualDiv.style.backgroundColor = cores[processamentoatual.getID() % 6];
+        // colocando ela na div do processamento atual
         atual.appendChild(processamentoatualDiv);
 
     }
 }
 
+/**
+* Função que é chamada para atualizar a linha do tempo
+*/
 function atualizaLinhadoTempo(){
 
+    // pega a div da linha do tempo
     var linhaDoTempo = document.getElementById('linhaDoTempo');
 
+    // se existir um novo processo á ser alocado
     if(processamentoatual != null){
 
+        // cria a div do processo
         let bloco = document.createElement('div');
         bloco.className = 'utProcesso';
 
+        // cria a div da unidade de tempo
         let unidadeDeTempo = document.createElement('div');
         unidadeDeTempo.className = 'ut';
         unidadeDeTempo.textContent = `${ut}u.t: `;
         bloco.appendChild(unidadeDeTempo);
 
+        // cria o elemento do processamento com as informações (inclusive a cor)
         let processamentoatualDiv = document.createElement('div');
         processamentoatualDiv.className = 'processo';
         processamentoatualDiv.textContent = `P${processamentoatual.getID()}`;
         processamentoatualDiv.style.backgroundColor = cores[processamentoatual.getID() % 6];
-        bloco.appendChild(processamentoatualDiv);
 
+        // coloca as divs corretamente
+        bloco.appendChild(processamentoatualDiv);
         linhaDoTempo.appendChild(bloco);
     }
 }
 
+/**
+* Função que é chamada para limpar a vizualização quando o processamento termina
+*/
 function limpar(){
-    ut = 0;
+
+    // desabilita botão de limpa e pare e habilita o de iniciar
+    habilitaBotaoInicia();
+    desabilitaBotaoPare();
+    desabilitaBotaoLimpa();
+
+    // limpa as divs
     var linhaDoTempo = document.getElementById('linhaDoTempo');
     linhaDoTempo.innerHTML = ''; 
+
+    var atual = document.getElementById('processoExecutando');
+    atual.innerHTML = '';
+
+    var escalonador = document.getElementById('niveis');
+    escalonador.innerHTML = '';
+
+    // reinicia variáveis
+    numeroProcessos = 0; 
+    filaPronto = null; 
+    processamentoatual = null; 
+    numeroNiveis = 0 
+    ut = 0;
+    parei = false;
+    
+}
+
+/**
+* Função que é chamada para habilitar o botão de iniciar
+*/
+function habilitaBotaoInicia(){
+    const botaoInicia = document.getElementById('botaoInicia'); 
+    botaoInicia.disabled = false;
+    botaoInicia.classList.remove("disabled");
+}
+
+/**
+* Função que é chamada para desabilitar o botão de iniciar
+*/
+function desabilitaBotaoInicia(){
+    const botaoInicia = document.getElementById('botaoInicia'); 
+    botaoInicia.disabled = true;
+    botaoInicia.classList.add("disabled");
+}
+
+/**
+* Função que é chamada para habilitar o botão de parar
+*/
+function habilitaBotaoPare(){
+    var botaoPara = document.getElementById('botaoPara'); 
+    botaoPara.disabled = false;
+    botaoPara.classList.remove("disabled");
+}
+
+/**
+* Função que é chamada para desabilitar o botão de parar
+*/
+function desabilitaBotaoPare(){
+    const botaoPara = document.getElementById('botaoPara'); 
+    botaoPara.disabled = true;
+    botaoPara.classList.add("disabled");
+}
+
+/**
+* Função que é chamada para habilitar o botão de limpar
+*/
+function habilitaBotaoLimpa(){
+    var botaoLimpa = document.getElementById('botaoLimpa'); 
+    botaoLimpa.disabled = false;
+    botaoLimpa.classList.remove("disabled");
+}
+
+/**
+* Função que é chamada para desabilitar o botão de limpar
+*/
+function desabilitaBotaoLimpa(){
+    var botaoLimpa = document.getElementById('botaoLimpa'); 
+    botaoLimpa.disabled = true;
+    botaoLimpa.classList.add("disabled");
 }
