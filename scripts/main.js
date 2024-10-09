@@ -69,6 +69,19 @@ function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho
         return;
     }
 
+    if (quantum < quantumMaximo && executando) {
+        processamentoatual.decresceTamanho();
+        // se o processo acabou a execução
+        if (processamentoatual.getTamanho() == 0) {
+            // não tem nada executando
+            executando = false; 
+            processamentoatual = null;
+        } 
+
+        quantum++;
+        
+    } 
+
     // se chegou ao fim do quantum ou não tem nenhum processo executando
     if (quantum >= quantumMaximo || !executando) {
 
@@ -82,6 +95,7 @@ function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho
             filaPronto.getNivel(processamentoatual.getPrioridade()).adicionaFila(processamentoatual);
         }
 
+
         // se ainda existem processos
         if (filaPronto.getPrioridadeMaisAlta() != -1) {
             // pega o processo da prioridade mais alta
@@ -94,7 +108,6 @@ function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho
             parei = false;
             desabilitaBotaoPare();
             habilitaBotaoLimpa();
-            processamentoatual = null;
             executando = false;
 
             // atualiza vizualização e volta
@@ -104,19 +117,6 @@ function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho
         } 
 
     }
-
-    if (quantum < quantumMaximo && executando) {
-        processamentoatual.decresceTamanho();
-        // se o processo acabou a execução
-        if (processamentoatual.getTamanho() == 0) {
-            // não tem nada executando
-            executando = false; 
-        } 
-
-        quantum++;
-        
-    } 
-
 
     // cria um proesso aleatorio
     criaProcessoAleatorio(isChecked, probabilidade, MaxTamanho);
