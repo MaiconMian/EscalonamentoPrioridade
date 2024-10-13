@@ -12,12 +12,12 @@ function atualizarVisualizacao() {
     escalonador.innerHTML = '';
 
     // se existirem processos
-    if(filaPronto != null){
+    if(gestorDeNiveis != null){
         // percorre toda a fila de pronto
-        for (var i = 0; i < filaPronto.getNumeroNiveis(); i++) {
+        for (var i = 0; i < gestorDeNiveis.getNumeroNiveis(); i++) {
 
             // cria o nivel e a div dele
-            var nivel = filaPronto.getNivel(i);
+            var nivel = gestorDeNiveis.getNivel(i);
             var nivelDiv = document.createElement('div');
             
             // cria a div no html do título do nivel
@@ -125,7 +125,7 @@ function limpar(){
 
     // reinicia variáveis
     numeroProcessos = 0; 
-    filaPronto = null; 
+    gestorDeNiveis = null; 
     processamentoatual = null; 
     numeroNiveis = 0 
     ut = 0;
@@ -134,21 +134,53 @@ function limpar(){
 }
 
 /**
-* Função que é chamada para habilitar o botão de iniciar
+* Função que é chamada para habilitar o botão de iniciar e todos os botões que iniciam níveis, processos 
+* e processos aleatórios
 */
 function habilitaBotaoInicia(){
+    // habilita botão de inicia
     const botaoInicia = document.getElementById('botaoInicia'); 
     botaoInicia.disabled = false;
     botaoInicia.classList.remove("disabled");
+
+    // habilita botão de criar níveis
+    const botaoCriarNiveis = document.getElementById('botaoCriaNiveis'); 
+    botaoCriarNiveis.disabled = false;
+    botaoCriarNiveis.classList.remove("disabled");
+
+    // habilita botão de criar processo
+    const botaoCriaProcesso = document.getElementById('botaoCriaProcesso'); 
+    botaoCriaProcesso.disabled = false;
+    botaoCriaProcesso.classList.remove("disabled");
+
+    // habilita checkbox
+    const checkbox = document.getElementById('criarProcessoAleatorio');
+    checkbox.disabled = false;
 }
 
 /**
-* Função que é chamada para desabilitar o botão de iniciar
+* Função que é chamada para desabilitar o botão de iniciar e todos os botões que iniciam níveis, processos 
+* e processos aleatórios
 */
 function desabilitaBotaoInicia(){
+    // desabilita botão de inicia
     const botaoInicia = document.getElementById('botaoInicia'); 
     botaoInicia.disabled = true;
     botaoInicia.classList.add("disabled");
+
+    // desabilita botão de criar niveis
+    const botaoCriarNiveis = document.getElementById('botaoCriaNiveis'); 
+    botaoCriarNiveis.disabled = true;
+    botaoCriarNiveis.classList.add("disabled");
+
+    // desabilita botão de criar processo
+    const botaoCriaProcesso = document.getElementById('botaoCriaProcesso'); 
+    botaoCriaProcesso.disabled = true;
+    botaoCriaProcesso.classList.add("disabled");
+
+    // desabilita checkbox
+    const checkbox = document.getElementById('criarProcessoAleatorio');
+    checkbox.disabled = true;
 }
 
 /**

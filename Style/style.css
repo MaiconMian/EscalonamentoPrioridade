@@ -1,5 +1,5 @@
-
 body{
+    overflow-x: auto; 
     background-color: #ffffff;
     align-items: center;
     flex-direction: column;
@@ -79,7 +79,7 @@ body{
     margin: 5px;
 }
 
-.botaoInicia.disabled, .botaoPara.disabled, .botaoLimpa.disabled {
+.botaoInicia.disabled, .botaoPara.disabled, .botaoLimpa.disabled, .botaoSimples.disabled{
     background-color: gray; 
     color: lightgray; 
     cursor: not-allowed; 

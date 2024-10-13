@@ -3,7 +3,7 @@
 */
 function criarNiveis(){
 
-    if(filaPronto != null){
+    if(gestorDeNiveis != null){
         terminei = true;
     }
     
@@ -16,8 +16,8 @@ function criarNiveis(){
             throw new Error("O número de níveis é invalido, deve ser entre 1 e 10");
         } 
         // cria a fila de pronto, inicia os níveis e atualiza vizualização
-        filaPronto = new FilaPronto(numeroNiveis);
-        filaPronto.iniciaNiveis();
+        gestorDeNiveis = new GestorDeNiveis(numeroNiveis);
+        gestorDeNiveis.iniciaNiveis();
         atualizarVisualizacao();
     } catch (e){
         // trata erro
@@ -34,7 +34,7 @@ function criarProcesso() {
     try {
 
         // verifica se existe fila de pronto
-        if (filaPronto == null){
+        if (gestorDeNiveis == null){
             throw new Error("Você não inicinou os níveis!");
         }
 
@@ -47,7 +47,6 @@ function criarProcesso() {
             throw new Error("Tamanho do processo inválido");
         }
         if (prioridadeprocesso != 0 && !prioridadeprocesso || prioridadeprocesso <= -1 || prioridadeprocesso > numeroNiveis-1){
-            console.log(prioridadeprocesso, numeroNiveis-1);
             throw new Error("Prioridade do processo invlálida!");
         }
     
@@ -56,7 +55,7 @@ function criarProcesso() {
 
         // cria o processo e o coloca na fila
         var processoatual = new Processo(prioridadeprocesso, tamanhoprocesso, numeroProcessos);
-        filaPronto.getNivel(prioridadeprocesso).adicionaFila(processoatual);
+        gestorDeNiveis.getNivel(prioridadeprocesso).adicionaFila(processoatual);
         atualizarVisualizacao();
         
     } catch (e) {
@@ -82,11 +81,10 @@ function criaProcessoAleatorio(isChecked, probabilidade, maxTamanho){
         if(probabilidadeGerada < probabilidade){
             // cria o processo
             numeroProcessos++;
-            console.log("processo de numero: ", numeroProcessos);
             let prioridade = Math.floor(Math.random() * numeroNiveis); 
             let tamanho = Math.floor(Math.random() * maxTamanho) + 1; 
             var novoprocesso = new Processo(prioridade, tamanho, numeroProcessos);
-            filaPronto.getNivel(prioridade).adicionaFila(novoprocesso);
+            gestorDeNiveis.getNivel(prioridade).adicionaFila(novoprocesso);
         }
 
     }

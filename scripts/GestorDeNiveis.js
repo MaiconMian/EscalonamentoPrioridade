@@ -1,8 +1,8 @@
 /**
- * Classe que representa a "fila" de pronto, tendo n niveis de prioridade.
+ * Classe que representa o gestor dos níveis de prioridade, tendo n niveis de prioridade.
  * Contém o número de níveis e o vetor dos níveis.
  */
-class FilaPronto {
+class GestorDeNiveis {
 
     /**
      * Construtor do objeto do tipo FilaPronto
@@ -12,7 +12,7 @@ class FilaPronto {
      */
     constructor(numero_niveis){
         this.numero_niveis = numero_niveis;
-        this.nivel = []
+        this.nivel = [];
     }
 
     /**
