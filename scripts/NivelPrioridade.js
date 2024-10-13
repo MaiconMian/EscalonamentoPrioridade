@@ -80,13 +80,13 @@ class NivelPriodidade {
      * Método que atualiza o nivel de um processo (aqui, o retiramos da fila)
      * 
      * @param {number} indice - qual o indice do processo
-     * @param {number} SubirPrioridade - qual o tempo que um processo deve ter sem executar para subir a prioridade
+     * @param {number} subirPrioridade - qual o tempo que um processo deve ter sem executar para subir a prioridade
      * @returns {Processo} - Retorna o processo removido da fila 
      */
-    atualizaNivel(indice, SubirPrioridade){
+    atualizaNivel(indice, subirPrioridade){
         
         // se o processo estiver chegado ao tempo sem executar
-        if(this.fila[indice].getTempoSemExecutar() == SubirPrioridade){
+        if(this.fila[indice].getTempoSemExecutar() == subirPrioridade){
             // sobe a prioridade e sai dessa fila 
             this.fila[indice].sobePrioridade(numeroNiveis);
             return this.retiraElemento(this.fila[indice].getID());

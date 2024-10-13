@@ -1,5 +1,5 @@
 // cores para os processos
-const cores = ['#add8e6', '#87cefa', '#4682b4', '#4169e1', '#0000ff', '#00008b'];
+const cores = ['#6a0dad', '#1e90ff', '#32cd32', '#ffff00', '#ff0000', '#ff1493'];
 
 /**
 * Função que é chamada para atualizar a vizualização geral

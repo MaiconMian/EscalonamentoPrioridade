@@ -61,9 +61,9 @@ class GestorDeNiveis {
     /**
      * Método que atualiza a prioridade dos processos que não foram executados previamente
      * 
-     * @param {number} SubirPrioridade - número de unidades de tempo sem executar que um processo deve ter para subir de prioridade
+     * @param {number} subirPrioridade - número de unidades de tempo sem executar que um processo deve ter para subir de prioridade
      */
-    atualizaPrioridades(SubirPrioridade){
+    atualizaPrioridades(subirPrioridade){
         // percorre todos os níveis, menos o mais alto, pois não teria nível a subir
         for (let i = (this.numero_niveis-2); i >= 0 ; i--){
 
@@ -71,7 +71,7 @@ class GestorDeNiveis {
             for(let j = 0; j < this.nivel[i].getTamanhoFila();j++){
 
                 // tenta subir a prioridade de um processo 
-                var processo = this.nivel[i].atualizaNivel(j, SubirPrioridade);
+                var processo = this.nivel[i].atualizaNivel(j, subirPrioridade);
 
                 // caso o processo tenha subido de prioridade
                 if(processo != null){

@@ -22,11 +22,11 @@ var parei = false; // valor para parar o processamento
 function iniciar() {
 
     var quantumMaximo = parseInt(document.getElementById('tamanhoQuantum').value, 10), // valor maximo de um quantum
-        SubirPrioridade = parseInt(document.getElementById('SubirPrioridade').value, 10), // valor para subir de prioridade
+        subirPrioridade = parseInt(document.getElementById('SubirPrioridade').value, 10), // valor para subir de prioridade
         quantum = 0; // inicia a variavel quantum
         executando = false, // nenhum processo executando ainda
         probabilidade = parseInt(document.getElementById('Probabilidade').value, 10), // probabilidade de gerar um processo aleatorio
-        MaxTamanho = parseInt(document.getElementById('MaxTamanho').value, 10); // tamanho maximo que um processo aleatorio pode ter
+        maxTamanho = parseInt(document.getElementById('MaxTamanho').value, 10); // tamanho maximo que um processo aleatorio pode ter
     
     const checkbox = document.getElementById('criarProcessoAleatorio'), // checkbox, constante pra não alterar durante execução
         isChecked = checkbox.checked; // verifica se o checkbox está precionado
@@ -43,15 +43,15 @@ function iniciar() {
             throw new Error("Você não iniciou o valor do quantum"); 
         } else if (!isChecked && gestorDeNiveis != null && gestorDeNiveis.getPrioridadeMaisAlta() == -1 && processamentoatual == null){ // não tem o que executar
             throw new Error("Não existirão processos a serem executados!"); 
-        } else if (isChecked && (!probabilidade || !MaxTamanho || probabilidade < 1 || probabilidade > 100 || MaxTamanho < 1)){
+        } else if (isChecked && (!probabilidade || !maxTamanho || probabilidade < 1 || probabilidade > 100 || maxTamanho < 1)){
             throw new Error("Verifique a probabilidade [1-100] e o tamanho maximo[1-*] para que o processo aleatorio seja gerado");
-        } else if (!SubirPrioridade || SubirPrioridade < 1){ // não colocou o valor de u.t sem executar para subir prioridae
+        } else if (!subirPrioridade || subirPrioridade < 1){ // não colocou o valor de u.t sem executar para subir prioridae
             throw new Error("Defina um tempo para que um processo suba de nível se não for executado");
         } else {
            // habilita botao de pare
            habilitaBotaoPare();
            // se deu tudo certo, executa
-            processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho, SubirPrioridade, isChecked, );
+            processar(quantum, executando, quantumMaximo, probabilidade, maxTamanho, subirPrioridade, isChecked, );
         }
     
     } catch(e){
@@ -69,11 +69,11 @@ function iniciar() {
 * @param {boolean} executando - Guarda se existe algum processo sendo executado
 * @param {number} quantumMaximo - Guarda o tamanho do quantum máximo
 * @param {number} probabilidade - A probabilidade de um processo ser gerado
-* @param {number} MaxTamanho - Qual o tamanho máximo de um processo elatorio
-* @param {number} SubirPrioridade - Qual o tempo para que um processo suba de prioridade
+* @param {number} maxTamanho - Qual o tamanho máximo de um processo elatorio
+* @param {number} subirPrioridade - Qual o tempo para que um processo suba de prioridade
 * @param {boolean} isChecked - Verifica se o checkbox está ativado
 */
-function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho, SubirPrioridade, isChecked,) {
+function processar(quantum, executando, quantumMaximo, probabilidade, maxTamanho, subirPrioridade, isChecked,) {
     
     // aumenta um na unidade de tempo
     ut++;
@@ -135,14 +135,14 @@ function processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho
     }
 
     // cria um proesso aleatorio
-    criaProcessoAleatorio(isChecked, probabilidade, MaxTamanho);
+    criaProcessoAleatorio(isChecked, probabilidade, maxTamanho);
     // atualiza o nivel de prioridade dos processos
-    gestorDeNiveis.atualizaPrioridades(SubirPrioridade-1);
+    gestorDeNiveis.atualizaPrioridades(subirPrioridade-1);
     // atualiza vizualização
     atualizarVisualizacao();
     // chama novamente a função
     setTimeout(() => {
-        processar(quantum, executando, quantumMaximo, probabilidade, MaxTamanho, SubirPrioridade, isChecked);
+        processar(quantum, executando, quantumMaximo, probabilidade, maxTamanho, subirPrioridade, isChecked);
     }, 1300); 
 
 }

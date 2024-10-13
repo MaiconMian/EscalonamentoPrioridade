@@ -8,6 +8,7 @@ body{
 }
 
 .EntradasDoUsuario {
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-around; 
     background-color: #e2e2e2dc; 
@@ -100,6 +101,7 @@ body{
 }
 
 .Saida{
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-around; 
     background-color: #e2e2e2dc; 
